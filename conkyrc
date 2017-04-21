@@ -1,0 +1,102 @@
+update_interval 2
+
+use_xft yes
+xftfont mono:size=8
+xftalpha 0.8
+text_buffer_size 2048
+override_utf8_locale yes
+total_run_times 0
+
+own_window yes
+own_window_transparent yes
+own_window_type desktop
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+double_buffer yes
+
+minimum_size 100 0
+maximum_width 300
+
+draw_shades no
+draw_outline no
+draw_borders no
+stippled_borders 0
+
+border_margin 5
+border_width 1
+
+default_color white
+default_shade_color black
+default_outline_color black
+own_window_colour white
+use_spacer none
+
+alignment top_right
+
+gap_x 15
+gap_y 30
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+uppercase no
+
+cpu_avg_samples 3
+net_avg_samples 3
+
+color1 FFFFFF
+color2 8AE234
+
+#=============================================================
+#=============================================================
+TEXT
+${color1}
+${alignc}${time %Y. %B %d.}
+${alignc}${time [%A]}
+
+${font :bold:size=10}SYSTEM ${hr 4}${font}
+OS:     ${alignr} ${exec lsb_release -si} ${exec lsb_release -sr}
+Kernel: ${alignr} ${kernel}
+Host:   ${alignr} ${nodename}
+RAM:    ${alignr} ${memmax}
+SWAP:   ${alignr} ${swapmax}
+Uptime: ${alignr} ${uptime}
+#${exec acpi}
+
+
+${color1}CPU1 ${alignr}${color2} ${cpu cpu1}%
+${color1}${cpubar cpu1 8}
+${color1}CPU2 ${alignr}${color2} ${cpu cpu2}%
+${color1}${cpubar cpu2 8}
+
+${color1}RAM ${alignr}${color2} ${mem}
+${color1}${membar 8}
+
+${color1}SWAP ${alignr}${color2} ${swap}
+${color1}${swapbar 8}
+
+${color1}DISK /${alignr}${color2} ${fs_used /}
+${color1}${fs_bar 8 /}
+${color1}DISK home${alignr}${color2} ${fs_used /home}
+${color1}${fs_bar 8 /home}
+
+
+${color1}${font :bold:size=10}PROCESS ${hr 4}${font}
+${color1}${top name 1} ${alignr}${color2} ${top cpu 1}%
+${color1}${top name 2} ${alignr}${color2} ${top cpu 2}%
+${color1}${top name 3} ${alignr}${color2} ${top cpu 3}%
+
+${color1}${top_mem name 1} ${alignr}${color2} ${top_mem mem 1}%
+${color1}${top_mem name 2} ${alignr}${color2} ${top_mem mem 2}%
+${color1}${top_mem name 3} ${alignr}${color2} ${top_mem mem 3}%
+
+
+${color1}${font :bold:size=10}NETWORK ${hr 4}${font}
+${color1}IP:   ${alignr}${color2} ${addr wlan0}
+
+${color1}Speed D: ${alignr}${color2} ${downspeed wlan0}
+${color1}Speed U: ${alignr}${color2} ${upspeed wlan0}
+
+${color1}Total D: ${alignr}${color2} ${totaldown wlan0}
+${color1}Total U: ${alignr}${color2} ${totalup wlan0}
+
