@@ -1,17 +1,21 @@
 " ====== BASICS ===================================================================================
     set nocompatible            " explicitly get out of vi-compatible mode
-    set background=light        " we plan to use a light background
     colorscheme solarized       " color scheme
     syntax on                   " syntax highlighting on
 " =================================================================================================
 
 
-" ====== GRAPHICAL SETTINGS =======================================================================
+" ====== GRAPHICAL SETTINGS =============================================================================
     if has("gui_running")
+        set background=light    " we plan to use a light background
         set guioptions=ce       " e = use simple dialogs rather than pop-ups
                                 " c = use GUI tabs, not console style tabs
         set guioptions-=T       " T = remove the toolbar
         set mousehide           " hide the mouse cursor when typing
+    else
+        set t_Co=256                    " needed for console mode
+        let g:solarized_termcolors=256  " enable degraded color mode, this is needed only if you do not apply solarized colors to your terminal emulator
+        set background=light            " we plan to use a dark background
     endif
 " =================================================================================================
 
@@ -21,8 +25,10 @@
     set backspace=indent,eol,start
     set number                  " turn on line numbers
     set numberwidth=5           " good up to 99999 lines
+if has("gui_running")
     set cursorline              " highlight current line
-    set wildmenu                " visual autocomplete for command menu
+endif
+    set wildmenu                " visual autocomplete for command menu 
     set lazyredraw              " redraw only when we need to
     set showcmd                 " show the command being typed
     set showmatch               " show matching brackets

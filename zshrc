@@ -15,8 +15,17 @@ compinit
 
 # [SimonG] Setting up my own prompt
 PROMPT=$'\n'"%F{green}[%n@%m: %B%d%b%f%F{green}]%f"$'\n'"> "
+
 # [SimonG] Force the terminal color mode outside of TMUX to xterm-256
 [ -z "$TMUX" ] && export TERM=xterm-256color
+
+# [SimonG] Start tmux together with terminal
+# Tests to make sure that tmux:
+# (1) exists on the system and
+# (2) doesn't try to run within itself
+if command -v tmux>/dev/null; then
+  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+fi
 
 ############ My own welcome message
 bold=$(tput bold)
