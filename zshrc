@@ -50,7 +50,7 @@ users=`users`
 uptime=`uptime -p`
 package=`dpkg --list | wc --lines`
 
-mem_used=`free -h | grep /cache: | awk '{print $3}'`
+mem_used=`free -h | grep Mem: | awk '{print $3}'`
 mem_total=`free -h | grep Mem: | awk '{print $2}'`
 swap_used=`free -h | grep Swap: | awk '{print $3}'`
 swap_total=`free -h | grep Swap: | awk '{print $2}'`
